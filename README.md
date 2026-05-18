@@ -18,7 +18,6 @@ Se realizaron pruebas de rendimiento y precisión utilizando los siguientes mode
 * **Claude Sonnet 4.6**
 * **Grok Fast**
 
----
 
 ## Estructura del Proyecto
 
@@ -50,8 +49,15 @@ Se realizaron preguntas a los modelos **sin proporcionar contexto adicional** (Z
 Para medir cómo el contexto y las instrucciones afectan la calidad de la respuesta, se probaron tres arquitecturas de prompts diferentes:
 
 * **Prompt base:** Contiene únicamente la pregunta directa del usuario.
+* ¿Qué carreras ofrece la UTPL y cuáles son sus modalidades de estudio?
 * **Prompt contextualizado:** Incluye fragmentos relevantes extraídos de la base de conocimiento inyectados justo antes de la pregunta.
+* ¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?
 * **Prompt con rol:** Asigna al modelo una personalidad específica (orientador académico oficial de la UTPL) y establece restricciones estrictas para que las respuestas se limiten única y exclusivamente al contexto proporcionado.
+* Actúa como un orientador académico oficial de la Universidad Técnica Particular de Loja (UTPL).
+Tu tarea es responder únicamente utilizando la información proporcionada en la base de conocimiento. Mantén un tono claro, profesional y preciso. No inventes información adicional ni agregues datos externos. Si la información no está disponible en la base de conocimiento, indícalo explícitamente.
+Base de conocimiento:
+Nombre oficial: Psicología Tipo: Grado Área de conocimiento: Salud y Bienestar Modalidad disponible: En línea / Presencial Duración: 8 semestres Sedes activas: Loja y centros UTPL Perfil de egreso: Analiza el comportamiento humano y los procesos mentales para intervenir en diferentes contextos sociales y clínicos.
+Pregunta: ¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?
 
 ### 4. Refinamiento de Prompts
 Con base en los resultados de la evaluación, se realizaron iteraciones adicionales en el diseño de los prompts para:
@@ -59,8 +65,6 @@ Con base en los resultados de la evaluación, se realizaron iteraciones adiciona
 * Mejorar la precisión y fidelidad de los datos.
 * Controlar el tono (hacerlo más profesional, claro y empático).
 * Limitar estrictamente la inclusión de información externa no validada.
-
----
 
 ## Hallazgos Principales
 
