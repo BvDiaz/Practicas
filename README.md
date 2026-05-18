@@ -49,9 +49,9 @@ Se realizaron preguntas a los modelos **sin proporcionar contexto adicional** (Z
 Para medir cómo el contexto y las instrucciones afectan la calidad de la respuesta, se probaron tres arquitecturas de prompts diferentes:
 
 * **Prompt base:** Contiene únicamente la pregunta directa del usuario.
-* ¿Qué carreras ofrece la UTPL y cuáles son sus modalidades de estudio?
+```¿Qué carreras ofrece la UTPL y cuáles son sus modalidades de estudio?```
 * **Prompt contextualizado:** Incluye fragmentos relevantes extraídos de la base de conocimiento inyectados justo antes de la pregunta.
-* ¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?
+```¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?```
 * **Prompt con rol:** Asigna al modelo una personalidad específica (orientador académico oficial de la UTPL) y establece restricciones estrictas para que las respuestas se limiten única y exclusivamente al contexto proporcionado.
 ```
 Actúa como un orientador académico oficial de la Universidad Técnica Particular de Loja (UTPL).
@@ -62,11 +62,68 @@ Pregunta: ¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánt
 ```
 
 ### 4. Refinamiento de Prompts
-Con base en los resultados de la evaluación, se realizaron iteraciones adicionales en el diseño de los prompts para:
-* Reducir la tasa de alucinaciones.
-* Mejorar la precisión y fidelidad de los datos.
-* Controlar el tono (hacerlo más profesional, claro y empático).
-* Limitar estrictamente la inclusión de información externa no validada.
+## Iteración 1
+Problema detectado
+
+Claude y Grok agregaban:
+
+datos inferidos,
+años,
+costos,
+detalles no presentes.
+```
+Actúa como orientador académico oficial de la Universidad Técnica Particular de Loja (UTPL).
+
+Responde únicamente utilizando la información contenida en la base de conocimiento proporcionada. No agregues información externa, inferencias, costos, enlaces, duración en años ni detalles no incluidos explícitamente.
+
+Si una pregunta solicita información no disponible en la base, responde:
+“No dispongo de esa información dentro de la base de conocimiento proporcionada.”
+
+Base de conocimiento:
+
+Nombre oficial: Psicología
+Tipo: Grado
+Área de conocimiento: Salud y Bienestar
+Modalidad disponible: En línea / Presencial
+Duración: 8 semestres
+Sedes activas: Loja y centros UTPL
+Perfil de egreso: Analiza el comportamiento humano y los procesos mentales para intervenir en diferentes contextos sociales y clínicos.
+
+Pregunta:
+¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?
+```
+## Iteración 2
+Problema detectado
+
+Gemini respondió demasiado corto.
+Faltaba aprovechar mejor la base.
+```
+Actúa como orientador académico oficial de la Universidad Técnica Particular de Loja (UTPL).
+
+Responde únicamente con la información presente en la base de conocimiento proporcionada.
+
+Tu respuesta debe:
+
+* mantener un tono formal y claro,
+* evitar información externa o inferencias,
+* utilizar todos los datos relevantes disponibles,
+* organizar la respuesta en formato de lista.
+
+Si la información solicitada no existe en la base, indica claramente que no está disponible.
+
+Base de conocimiento:
+
+Nombre oficial: Psicología
+Tipo: Grado
+Área de conocimiento: Salud y Bienestar
+Modalidad disponible: En línea / Presencial
+Duración: 8 semestres
+Sedes activas: Loja y centros UTPL
+Perfil de egreso: Analiza el comportamiento humano y los procesos mentales para intervenir en diferentes contextos sociales y clínicos.
+
+Pregunta:
+¿Qué modalidades tiene la carrera de Psicología en la UTPL y cuánto dura?
+```
 
 ## Hallazgos Principales
 
